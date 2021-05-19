@@ -32,12 +32,12 @@
 .page__container {
 	max-width: 880px;
 	margin: 0 auto;
-	padding: 45px calc(19px + (200 - 19) * ((100vw - 320px) / (1280 - 320))) 60px;
+	padding: 45px 0 60px 0;
 }
 
-.line	{
-	border: 1px solid #545454;
-	margin-top: 41px;
+.header {
+	padding-bottom: 41px;
+	border-bottom: 1px solid #545454;
 }
 
 .profile {
@@ -50,10 +50,11 @@
 
 .profile__info {
 	margin-right: auto;
-	display: flex;
-	flex-wrap: wrap;
-	width: 336px;
-	align-items: baseline;
+	max-width: 100%;
+  display: grid;
+  grid-template-areas:
+      "title edit"
+      "subtitle ."
 }
 
 .profile__title {
@@ -62,12 +63,14 @@
 	font-size: 42px;
 	line-height: 48px;
 	margin: 0 18px 0 0;
+	grid-area: title;
 }
 
 .profile__subtitle {
 	font-size: 18px;
 	line-height: 22px;
 	margin: 16px 0 0;
+	grid-area: subtitle;
 }
 
 .profile__avatar {
@@ -79,6 +82,8 @@
 	height: 24px;
 	cursor: pointer;
 	transition: all .3s linear;
+	grid-area: edit;
+	align-self: center;
 }
 
 .profile__btn:hover {
@@ -212,7 +217,7 @@
 	position: absolute;
 	padding: 0;
 	top: -43px;
-	left: 430px;
+	right: -43px;
 	background-color: transparent;
 	cursor: pointer;
 	transition: all .3s linear;
@@ -241,7 +246,7 @@
 	font-size: 18px;
 	line-height: 22px;
 	text-align: center;
-	margin-top: 17px;
+	margin-top: 48px;
 	transition: all .3s linear;
 	font-family: inherit;
 }
@@ -273,6 +278,10 @@
 	padding: 0;
 }
 
+.form__name:last-of-type {
+	margin: 0;
+}
+
 .form__job {
   border: 0;
   max-width: 358px;
@@ -283,19 +292,26 @@
 	font-weight: normal;
 	font-size: 14px;
 	line-height: 17px;
-	margin-bottom: 30px;
 	padding: 0;
+}
+
+@media screen and (max-width: 1024px) {
+	.page__container {
+		padding: 28px 19px 36px 19px;
+	}
 }
 
 @media screen and (max-width: 890px) {
 	.profile__title {
 		font-size: 27px;
+		line-height: 32px;
 	}
 }
 
 @media screen and (max-width: 768px) {
 	.profile {
 		flex-direction: column;
+		text-align: center;
 	}
 	.profile__avatar {
 		margin: 0;
@@ -316,5 +332,45 @@
 @media screen and (max-width: 540px) {
 	.popup {
 		padding: 0 19px;
+	}
+
+	.header__logo {
+		width: 103px;
+		height: 24px;
+	}
+
+	.header {
+		padding-bottom: 31px;
+	}
+	
+	.cards {
+		padding-top: 36px;
+	}
+
+	.footer {
+		padding-top: 48px;
+	}
+
+	.profile__subtitle {
+		font-size: 14px;
+		line-height: 17px;
+	}
+
+	.popup__close {
+		top: -55px;
+		right: -5px;
+	}
+
+	.popup__title {
+		font-size: 18px;
+		line-height: 22px;
+	}
+
+	.popup__container {
+		padding: 25px 22px;
+	}
+
+	.popup__title {
+		margin-bottom: 75px;
 	}
 }
