@@ -1,0 +1,16 @@
+.profile__info {
+	margin-right: auto;
+	max-width: 100%;
+  display: grid;
+  grid-template-areas:
+      "title edit"
+      "subtitle ."
+}
+
+@media screen and (max-width: 768px) {
+	.profile__info {
+		justify-content: center;
+		align-items: center;
+		margin: 26px 0 0 0;
+	}
+}
