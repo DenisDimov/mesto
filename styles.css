@@ -84,6 +84,7 @@
 	transition: all .3s linear;
 	grid-area: edit;
 	align-self: center;
+	margin-right: 10px;
 }
 
 .profile__btn:hover {
