@@ -1,4 +1,4 @@
-let openPopup = document.querySelector('.popup_opened');
+let openPopup = document.querySelector('.popup__opened');
 let popup = document.querySelector('.popup');
 let closePopup = document.querySelector('.popup__close');
 let formElement = document.querySelector('.form');
@@ -7,7 +7,7 @@ let jobInput = document.querySelector('.form__job');
 
 
 function togglePopups() {
-	popup.classList.toggle('popup_opened');
+	popup.classList.toggle('popup__opened');
 };
 
 function formSubmitHandler (evt) {
