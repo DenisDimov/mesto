@@ -1,19 +1,19 @@
 .form__btn {
-	width: 100%;
-	min-height: 50px;
-	background-color: #000;
-	padding: 0;
-	border: 0;
-	color: #fff;
-	cursor: pointer;
-	font-weight: normal;
-	font-size: 18px;
-	line-height: 22px;
-	text-align: center;
-	margin-top: 48px;
-	transition: all .3s linear;
+  width: 100%;
+  min-height: 50px;
+  background-color: #000;
+  padding: 0;
+  border: 0;
+  color: #fff;
+  cursor: pointer;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 22px;
+  text-align: center;
+  margin-top: 48px;
+  transition: all .3s linear;
 }
 
 .form__btn:hover {
-	opacity: 0.8;
+  opacity: 0.8;
 }

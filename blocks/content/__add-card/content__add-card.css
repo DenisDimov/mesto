@@ -1,28 +1,28 @@
 .content__add-card {
-	border: 2px solid #FFFFFF;
-	box-sizing: border-box;
-	border-radius: 2px;
+  border: 2px solid #FFFFFF;
+  box-sizing: border-box;
+  border-radius: 2px;
   font: inherit;
   color: inherit;
   background-color: transparent;
-	cursor: pointer;
-	padding: 23px 73px;
-	position: relative;
-	background-image: url(../../../image/Vector.svg);
-	background-position: center center;
-	background-repeat: no-repeat;
-	transition: all .3s linear;
+  cursor: pointer;
+  padding: 23px 73px;
+  position: relative;
+  background-image: url(../../../image/Vector.svg);
+  background-position: center center;
+  background-repeat: no-repeat;
+  transition: all .3s linear;
 }
 
 .content__add-card:hover {
-	opacity: 0.6;
+  opacity: 0.6;
 }
 
 @media screen and (max-width: 768px) {
-	.content__add-card {
-		margin-top: 36px;
-		width: 100%;
-		padding: 0;
-		min-height: 50px;
-	}
+  .content__add-card {
+    margin-top: 36px;
+    width: 100%;
+    padding: 0;
+    min-height: 50px;
+  }
 }

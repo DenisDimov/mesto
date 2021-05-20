@@ -1,12 +1,12 @@
 .form__job {
   border: 0;
   max-width: 358px;
-	min-height: 27px;
+  min-height: 27px;
   box-sizing: border-box;
   border-bottom: 1px solid #bcbcc4;
   background-color: transparent;
-	font-weight: normal;
-	font-size: 14px;
-	line-height: 17px;
-	padding: 0;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 17px;
+  padding: 0;
 }

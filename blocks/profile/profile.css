@@ -1,14 +1,14 @@
 .profile {
-	padding-top: 40px;
-	display: flex;
-	align-items: center;
-	justify-content: space-between;
-	color: #fff;
+  padding-top: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: #fff;
 }
 
 @media screen and (max-width: 768px) {
-	.profile {
-		flex-direction: column;
-		text-align: center;
-	}
+  .profile {
+    flex-direction: column;
+    text-align: center;
+  }
 }	
