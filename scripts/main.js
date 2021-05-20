@@ -1,4 +1,4 @@
-let openPopup = document.querySelector('.popup__opened');
+let openPopup = document.querySelector('.profile__btn');
 let popup = document.querySelector('.popup');
 let closePopup = document.querySelector('.popup__close');
 let formElement = document.querySelector('.form');
