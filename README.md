@@ -15,7 +15,7 @@
 
 **Github**
 
-* [Ссылка на проект Github](https://github.com/DenisDimov/mesto)
+* [Ссылка на проект Github](https://denisdimov.github.io/mesto/)
 
 
 
