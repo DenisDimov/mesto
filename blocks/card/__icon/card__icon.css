@@ -1,8 +1,8 @@
 .card__icon {
-	transition: all .3s linear;
-	cursor: pointer;
+  transition: all .3s linear;
+  cursor: pointer;
 }
 
 .card__icon:hover {
-	opacity: 0.5;
+  opacity: 0.5;
 }
