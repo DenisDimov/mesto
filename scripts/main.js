@@ -12,10 +12,6 @@ function openPopups() {
 	popup.classList.add('popup_opened');
 };
 
-function closePopups() {
-	popup.classList.remove('popup_opened');
-};
-
 // функция ввода данных в поля
 function formSubmitHandler (evt) {
 	evt.preventDefault(); 
@@ -24,6 +20,10 @@ function formSubmitHandler (evt) {
 	profileSubTitle.textContent = jobInput.value;
 
 	closePopups();
+};
+
+function closePopups() {
+	popup.classList.remove('popup_opened');
 };
 
 formElement.addEventListener('submit', formSubmitHandler);
