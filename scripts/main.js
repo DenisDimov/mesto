@@ -2,29 +2,30 @@ let openPopup = document.querySelector('.profile__btn');
 let popup = document.querySelector('.popup');
 let closePopup = document.querySelector('.popup__close');
 let formElement = document.querySelector('.form');
-let nameInput = document.querySelector('.form__name');
-let jobInput = document.querySelector('.form__job');
+let nameInput = document.querySelector('#form-name');
+let jobInput = document.querySelector('#form-job');
+let profileTitle = document.querySelector('.profile__title')
+let profileSubTitle = document.querySelector('.profile__subtitle')
 
-
-function togglePopups() {
-	popup.classList.toggle('popup__opened');
+// функции открытия попапа
+function openPopups() {
+	popup.classList.add('popup_opened');
 };
 
+function closePopups() {
+	popup.classList.remove('popup_opened');
+};
+
+// функция ввода данных в поля
 function formSubmitHandler (evt) {
 	evt.preventDefault(); 
 
-	nameInput = document.querySelector('.form__name').value;
-	jobInput = document.querySelector('.form__job').value;
+	profileTitle.textContent = nameInput.value;
+	profileSubTitle.textContent = jobInput.value;
 
-	document.querySelector('.profile__title');
-	document.querySelector('.profile__subtitle');
-
-	document.querySelector('.profile__title').textContent = nameInput;
-	document.querySelector('.profile__subtitle').textContent = jobInput;
-
-	togglePopups();
+	closePopups();
 };
 
 formElement.addEventListener('submit', formSubmitHandler);
-openPopup.addEventListener('click', togglePopups);
-closePopup.addEventListener('click', togglePopups);
+openPopup.addEventListener('click', openPopups);
+closePopup.addEventListener('click', closePopups);

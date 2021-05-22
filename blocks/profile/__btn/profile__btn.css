@@ -1,13 +1,26 @@
 .profile__btn {
   width: 24px;
-  min-height: 24px;
+  height: 24px;
   cursor: pointer;
   transition: all .3s linear;
   grid-area: edit;
   align-self: center;
-  margin-right: 10px;
+  margin: 0 10px 0 0;
+  background-image: url(./../../../image/Button.svg);
+  background-position: center center;
+  background-color: transparent;
+  border: 0;
+  padding: 0;
 }
 
 .profile__btn:hover {
   opacity: 0.6;
+}
+
+@media screen and (max-width: 425px) {
+  .profile__btn {
+    width: 18px;
+    height: 18px;
+    background-image: url(../../../image/Edit_Button_small.svg);
+  }
 }
