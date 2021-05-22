@@ -3,8 +3,8 @@
   line-height: 22px;
   margin: 16px 0 0;
   grid-area: subtitle;
-  text-overflow: ellipsis;   
-  white-space: nowrap;   
+  text-overflow: ellipsis;
+  white-space: nowrap;
   overflow: hidden;
   max-width: 294px;
 }
