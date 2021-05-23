@@ -22,5 +22,6 @@
     width: 18px;
     height: 18px;
     background-image: url(../../../image/Edit_Button_small.svg);
+    margin: 0;
   }
 }

@@ -15,5 +15,6 @@
   .profile__title {
     font-size: 27px;
     line-height: 32px;
+    margin: 0 10px 0 0;
   }
 }

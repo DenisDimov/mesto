@@ -6,3 +6,9 @@
   border-radius: 0 0 10px 10px;
   align-items: center;
 }
+
+@media screen and (max-width: 425px) {
+  .card__inner {
+    padding-bottom: 25px;
+  }  
+}

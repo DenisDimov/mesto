@@ -10,11 +10,14 @@ let profileSubTitle = document.querySelector('.profile__subtitle')
 // функции открытия попапа
 function openPopups() {
 	popup.classList.add('popup_opened');
+
+	nameInput.value = profileTitle.textContent
+	jobInput.value = profileSubTitle.textContent
 };
 
 // функция ввода данных в поля
 function formSubmitHandler (evt) {
-	evt.preventDefault(); 
+	evt.preventDefault();
 
 	profileTitle.textContent = nameInput.value;
 	profileSubTitle.textContent = jobInput.value;
@@ -22,6 +25,7 @@ function formSubmitHandler (evt) {
 	closePopups();
 };
 
+// функция закрытия попапа
 function closePopups() {
 	popup.classList.remove('popup_opened');
 };

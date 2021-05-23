@@ -11,6 +11,6 @@
   .profile__info {
     justify-content: center;
     align-items: center;
-    margin: 26px 0 0 0;
+    margin: 26px 0 0 25px;
   }
 }
