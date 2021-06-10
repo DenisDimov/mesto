@@ -1,30 +1,3 @@
-// const initialCards = [
-//   {
-//     name: 'Архыз',
-//     link: './image/elements/1.jpg'
-//   },
-//   {
-//     name: 'Челябинская область',
-//     link: '../image/elements/2.jpg'
-//   },
-//   {
-//     name: 'Иваново',
-//     link: './image/elements/3.jpg'
-//   },
-//   {
-//     name: 'Камчатка',
-//     link: '../image/elements/4.jpg'
-//   },
-//   {
-//     name: 'Холмогорский район',
-//     link: '../image/elements/5.jpg'
-//   },
-//   {
-//     name: 'Кот',
-//     link: '../image/elements/6.jpg'
-//   }
-// ];
-
 const initialCards = [
   {
     name: 'Архыз',
@@ -124,7 +97,6 @@ function setEventListeners(element) {
   element.querySelector('.card__delete').addEventListener('click', handleDelete);
   element.querySelector('.card__icon').addEventListener('click', handleLikes);
   element.querySelector('.card__image').addEventListener('click', handleShowImage);
-  element.querySelector('.card__title').closest('.card__item');
 }
 
 // лайк карточки

@@ -1,5 +1,5 @@
 .popup__image {
-  background-image: url(../../../image/elements/1.jpg);
+  background-image: url();
   width: 67vw;
   height: 67vh;
   max-width: 75vw;
@@ -7,4 +7,11 @@
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
+}
+
+@media screen and (max-width: 425px){
+  .popup__image {
+    width: 75vw;
+    height: 51vh;
+  }
 }
