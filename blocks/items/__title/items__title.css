@@ -1,4 +1,4 @@
-.card__title {
+.items__title {
   margin: 0;
   font-weight: 900;
   font-size: 24px;
@@ -10,7 +10,7 @@
 }
 
 @media screen and (max-width: 360px) {
-  .card__title {
+  .items__title {
     max-width: 200px;
   }
 }

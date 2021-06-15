@@ -34,13 +34,13 @@
 			<p class="footer__paragraph">&copy;2020 Mesto Russia</p>
 		</footer>
 
-		<div class="popup">
+		<div class="popup popup_type_edit">
 			<div class="popup__container">
-				<button class="popup__close" type="button"></button>
+				<button class="popup__close popup__close_edit" type="button"></button>
 				<h2 class="popup__title">Редактировать профиль</h2>
-				<form class="form" name="main-form">
-					<input type="text" id="form-name" value="" name="name" placeholder="Введите имя" class="form__item">
-					<input type="text" id="form-job" value="" name="job" placeholder="Введите профессию" class="form__item">
+				<form class="form form__type_edit" name="main-form">
+					<input type="text" id="form-name" value="" name="name" placeholder="Введите имя" class="form__item" >
+					<input type="text" id="form-job" value="" name="job" placeholder="Введите профессию" class="form__item" >
 					<button class="form__btn" type="submit">Сохранить</button>
 				</form>
 			</div>
@@ -49,33 +49,36 @@
 			<div class="popup__container">
 				<button class="popup__close popup__close_add_card"></button>
 				<h2 class="popup__title">Новое место</h2>
-				<form class="form" id="form__add-card" name="form-add-card">
-					<input type="text" id="form-place" name="place" placeholder="Название" class="form__item">
-					<input type="text" id="form-link" name="Link" placeholder="Ссылка на картинку" class="form__item">
+				<form class="form form__type_card" id="form__add-card" name="form-add-card">
+					<input type="text" id="form-place" name="place" placeholder="Название" class="form__item" >
+					<input type="text" id="form-link" name="Link" placeholder="Ссылка на картинку" class="form__item" >
 					<button class="form__btn" id="form-addBtn" type="submit">Создать</button>
 				</form>
 			</div>
 		</div>
 		<div class="popup popup_type_image">
 			<div class="popup__container popup__container_type_image">
-				<button class="popup__close" id="popup__close" type="button"></button>
+				<button class="popup__close popup__close_image" type="button"></button>
 				<div class="popup__image"></div>
 				<h3 class="popup__image-title"></h3>
 			</div>
 		</div>
 	</div>
 
-	<template class="card__template">
-		<li class="card__item">
-			<div class="card__image"></div>
-			<button class="card__delete" type="button"></button>
-			<div class="card__inner">
-				<h3 class="card__title"></h3>
-				<button type="button" class="card__icon"></button>
+	<template class="items">
+		<li class="items__item">
+			<div class="items__image"></div>
+			<button class="items__delete" type="button"></button>
+			<div class="items__inner">
+				<h3 class="items__title"></h3>
+				<button type="button" class="items__icon"></button>
 			</div>
 		</li>
 	</template>
+
+	<script src="./scripts/initial-сards.js"></script>
 	<script src="./scripts/main.js"></script>
+	<script src="./scripts/validate.js"></script>
 </body>
 
 </html>
