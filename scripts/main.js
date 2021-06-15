@@ -9,7 +9,7 @@ const buttonClosePopupEdit = document.querySelector('.popup__close_edit');
 const buttonClosePopupAddCard = document.querySelector('.popup__close_add_card');
 const buttonClosePopupImage = document.querySelector('.popup__close_image')
 
-const formElementTypeEdit = document.querySelector('.form__type_edit');
+const formElementTypeEdit = document.querySelector('.form_type_edit');
 const nameInput = document.querySelector('#form-name');
 const jobInput = document.querySelector('#form-job');
 const profileTitle = document.querySelector('.profile__title');
