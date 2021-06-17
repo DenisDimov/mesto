@@ -38,9 +38,9 @@
 			<div class="popup__container">
 				<button class="popup__close popup__close_edit" type="button"></button>
 				<h2 class="popup__title">Редактировать профиль</h2>
-				<form class="form form_type_edit" name="main-form">
-					<input type="text" id="form-name" value="" name="name" placeholder="Введите имя" class="form__item" >
-					<input type="text" id="form-job" value="" name="job" placeholder="Введите профессию" class="form__item" >
+				<form class="form form_type_edit" name="main-form" novalidate>
+					<input type="text" id="form-name" value="" name="name" placeholder="Введите имя" class="form__item" required minlength="2" maxlength="40">
+					<input type="text" id="form-job" value="" name="job" placeholder="Введите профессию" class="form__item" required minlength="2" maxlength="200">
 					<button class="form__btn" type="submit">Сохранить</button>
 				</form>
 			</div>
@@ -49,9 +49,9 @@
 			<div class="popup__container">
 				<button class="popup__close popup__close_add_card"></button>
 				<h2 class="popup__title">Новое место</h2>
-				<form class="form form_type_card" id="form__add-card" name="form-add-card">
-					<input type="text" id="form-place" name="place" placeholder="Название" class="form__item" >
-					<input type="text" id="form-link" name="Link" placeholder="Ссылка на картинку" class="form__item" >
+				<form class="form form_type_card" id="form__add-card" name="form-add-card" novalidate>
+					<input type="text" id="form-place" name="place" placeholder="Название" class="form__item" required minlength="1" maxlength="30">
+					<input type="url" id="form-link" name="Link" placeholder="Ссылка на картинку" class="form__item" required>
 					<button class="form__btn" id="form-addBtn" type="submit">Создать</button>
 				</form>
 			</div>
@@ -65,13 +65,13 @@
 		</div>
 	</div>
 
-	<template class="items">
-		<li class="items__item">
-			<div class="items__image"></div>
-			<button class="items__delete" type="button"></button>
-			<div class="items__inner">
-				<h3 class="items__title"></h3>
-				<button type="button" class="items__icon"></button>
+	<template class="card-template">
+		<li class="card__item">
+			<div class="card__image"></div>
+			<button class="card__delete" type="button"></button>
+			<div class="card__inner">
+				<h3 class="card__title"></h3>
+				<button type="button" class="card__icon"></button>
 			</div>
 		</li>
 	</template>

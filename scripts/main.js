@@ -16,9 +16,9 @@ const profileTitle = document.querySelector('.profile__title');
 const profileSubTitle = document.querySelector('.profile__subtitle');
 const formAddCardSubmit = document.querySelector('#form__add-card')
 const cards = document.querySelector('.card');
-const itemTemplate = document.querySelector('.items').content
-const InputFormLink = document.querySelector('#form-link')
-const InputFormTitle = document.querySelector('#form-place')
+const itemTemplate = document.querySelector('.card-template').content
+const inputFormLink = document.querySelector('#form-link')
+const inputFormTitle = document.querySelector('#form-place')
 const popupImageTitle = document.querySelector('.popup__image-title')
 
 function togglePopup(popup) {
@@ -34,8 +34,8 @@ function renderItem() {
 
 function createCard(item) {
 	const userElement = itemTemplate.cloneNode(true);
-  userElement.querySelector('.items__image').style.backgroundImage = `url('${item.link}')`
-	userElement.querySelector('.items__title').textContent = item.name
+  userElement.querySelector('.card__image').style.backgroundImage = `url('${item.link}')`
+	userElement.querySelector('.card__title').textContent = item.name
   setEventListeners(userElement);
   return userElement;
   
@@ -50,8 +50,8 @@ function renderCards (newCard) {
 
 function handlerAddCard(evt) {
   evt.preventDefault()
-  const formItemTitle = InputFormTitle.value
-  const formItemLink = InputFormLink.value
+  const formItemTitle = inputFormTitle.value
+  const formItemLink = inputFormLink.value
   const item = {
     name: formItemTitle,
     link: formItemLink
@@ -63,26 +63,26 @@ function handlerAddCard(evt) {
 // удаление карточки
 
 function handleDelete(evt) {
-  evt.target.closest('.items__item').remove();
+  evt.target.closest('.card__item').remove();
 }
 
 function handleShowImage (evt) {
   
   buttonOpenPopupImage.style.backgroundImage = evt.target.style.backgroundImage
-  popupImageTitle.textContent = evt.target.closest('.items__item').textContent
+  popupImageTitle.textContent = evt.target.closest('.card__item').textContent
   togglePopup(popupTypeShowImage)
 }
 
 function setEventListeners(element) {
-  element.querySelector('.items__delete').addEventListener('click', handleDelete);
-  element.querySelector('.items__icon').addEventListener('click', handleLikes);
-  element.querySelector('.items__image').addEventListener('click', handleShowImage);
+  element.querySelector('.card__delete').addEventListener('click', handleDelete);
+  element.querySelector('.card__icon').addEventListener('click', handleLikes);
+  element.querySelector('.card__image').addEventListener('click', handleShowImage);
 }
 
 // лайк карточки
 
 function handleLikes(evt) {
-  evt.target.classList.toggle('items__icon_active')
+  evt.target.classList.toggle('card__icon_active')
 }
 
 // функции открытия попапа редактирования профиля
@@ -94,7 +94,7 @@ function openProfileForm() {
 };
 
 // функция ввода данных в поля профиля
-function formSubmitHandler (evt) {
+function handleProfileFormSubmit (evt) {
 	evt.preventDefault();
   
 	profileTitle.textContent = nameInput.value;
@@ -107,7 +107,7 @@ renderItem()
 
 // отправка форм
 formAddCardSubmit.addEventListener('submit', handlerAddCard);
-formElementTypeEdit.addEventListener('submit', formSubmitHandler);
+formElementTypeEdit.addEventListener('submit', handleProfileFormSubmit);
 // открытие/закрытие попапа с именем
 buttonOpenPopupEdit.addEventListener('click', openProfileForm);
 buttonClosePopupEdit.addEventListener('click', () => {togglePopup(popupTypeEdit)})

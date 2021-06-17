@@ -1,4 +1,4 @@
-.items__inner {
+.card__inner {
   background-color: #fff;
   display: flex;
   justify-content: space-between;
@@ -8,7 +8,7 @@
 }
 
 @media screen and (max-width: 425px) {
-  .items__inner {
+  .card__inner {
     padding-bottom: 25px;
   }  
 }
