@@ -10,19 +10,41 @@ const buttonClosePopupAddCard = document.querySelector('.popup__close_add_card')
 const buttonClosePopupImage = document.querySelector('.popup__close_image')
 
 const formElementTypeEdit = document.querySelector('.form_type_edit');
-const nameInput = document.querySelector('#form-name');
-const jobInput = document.querySelector('#form-job');
+const nameInput = document.querySelector('.form__name');
+const jobInput = document.querySelector('.form__job');
 const profileTitle = document.querySelector('.profile__title');
 const profileSubTitle = document.querySelector('.profile__subtitle');
 const formAddCardSubmit = document.querySelector('#form__add-card')
 const cards = document.querySelector('.card');
 const itemTemplate = document.querySelector('.card-template').content
-const inputFormLink = document.querySelector('#form-link')
-const inputFormTitle = document.querySelector('#form-place')
+const inputFormLink = document.querySelector('.form__link')
+const inputFormTitle = document.querySelector('.form__place')
 const popupImageTitle = document.querySelector('.popup__image-title')
 
-function togglePopup(popup) {
-  popup.classList.toggle('popup_opened');
+function openPopup(popup) {
+  popup.classList.add('popup_opened');
+  document.addEventListener('keydown', handleEscUp)
+}
+
+const handleEscUp = (evt) => {
+  if (evt.key === 'Escape') {
+    closePopup(popupTypeShowImage);
+    closePopup(popupTypeEdit);
+    closePopup(popupTypeAddCard);
+  }
+}
+
+function closePopup(popup) {
+  popup.classList.remove('popup_opened')
+  document.removeEventListener('keydown', handleEscUp)
+}
+
+function closePopupOverlay(evt) {
+  if (evt.target.classList.contains('popup') || evt.target.classList.contains('popup__close')) {
+    closePopup(popupTypeShowImage);
+    closePopup(popupTypeEdit);
+    closePopup(popupTypeAddCard);
+  }
 }
 
 function renderItem() {
@@ -58,7 +80,7 @@ function handlerAddCard(evt) {
 }
   cards.prepend(createCard(item));
   formAddCardSubmit.reset()
-  togglePopup(popupTypeAddCard)
+  closePopup(popupTypeAddCard)
 }
 // удаление карточки
 
@@ -67,10 +89,10 @@ function handleDelete(evt) {
 }
 
 function handleShowImage (evt) {
-  
+  openPopup(popupTypeShowImage)
   buttonOpenPopupImage.style.backgroundImage = evt.target.style.backgroundImage
   popupImageTitle.textContent = evt.target.closest('.card__item').textContent
-  togglePopup(popupTypeShowImage)
+  
 }
 
 function setEventListeners(element) {
@@ -87,10 +109,9 @@ function handleLikes(evt) {
 
 // функции открытия попапа редактирования профиля
 function openProfileForm() {
-  
+  openPopup(popupTypeEdit)
 	nameInput.value = profileTitle.textContent
 	jobInput.value = profileSubTitle.textContent
-  togglePopup(popupTypeEdit)
 };
 
 // функция ввода данных в поля профиля
@@ -99,8 +120,7 @@ function handleProfileFormSubmit (evt) {
   
 	profileTitle.textContent = nameInput.value;
 	profileSubTitle.textContent = jobInput.value;
-
-	togglePopup(popupTypeEdit);
+	closePopup(popupTypeEdit);
 };
 
 renderItem()
@@ -108,11 +128,13 @@ renderItem()
 // отправка форм
 formAddCardSubmit.addEventListener('submit', handlerAddCard);
 formElementTypeEdit.addEventListener('submit', handleProfileFormSubmit);
+
 // открытие/закрытие попапа с именем
 buttonOpenPopupEdit.addEventListener('click', openProfileForm);
-buttonClosePopupEdit.addEventListener('click', () => {togglePopup(popupTypeEdit)})
+
 // открытие/закрытие попапа с карточками
-buttonOpenPopupAddCard.addEventListener('click', () => {togglePopup(popupTypeAddCard)});
-buttonClosePopupAddCard.addEventListener('click', () => {togglePopup(popupTypeAddCard)});
-buttonOpenPopupImage.addEventListener('click', () => {togglePopup(popupTypeShowImage)});
-buttonClosePopupImage.addEventListener('click', () => {togglePopup(popupTypeShowImage)});
+buttonOpenPopupAddCard.addEventListener('click', () => {openPopup(popupTypeAddCard)});
+buttonOpenPopupImage.addEventListener('click', () => {openPopup(popupTypeShowImage)});
+popupTypeShowImage.addEventListener('mousedown', closePopupOverlay)
+popupTypeAddCard.addEventListener('mousedown', closePopupOverlay)
+popupTypeEdit.addEventListener('mousedown', closePopupOverlay)

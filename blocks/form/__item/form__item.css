@@ -8,7 +8,9 @@
   font-size: 14px;
   line-height: 17px;
   padding: 5px 0;
-  margin-bottom: 30px;
+  /* margin-bottom: 30px; */
+  width: 100%;
+  outline: none;
 }
 
 .form__item:last-of-type {
