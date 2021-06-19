@@ -14,12 +14,12 @@ const nameInput = document.querySelector('.form__name');
 const jobInput = document.querySelector('.form__job');
 const profileTitle = document.querySelector('.profile__title');
 const profileSubTitle = document.querySelector('.profile__subtitle');
-const formAddCardSubmit = document.querySelector('#form__add-card')
+const formAddCardSubmit = document.querySelector('#form__add-card');
 const cards = document.querySelector('.card');
 const itemTemplate = document.querySelector('.card-template').content
-const inputFormLink = document.querySelector('.form__link')
-const inputFormTitle = document.querySelector('.form__place')
-const popupImageTitle = document.querySelector('.popup__image-title')
+const inputFormLink = document.querySelector('.form__link');
+const inputFormTitle = document.querySelector('.form__place');
+const popupImageTitle = document.querySelector('.popup__image-title');
 
 function openPopup(popup) {
   popup.classList.add('popup_opened');
@@ -27,27 +27,33 @@ function openPopup(popup) {
 }
 
 const handleEscUp = (evt) => {
+  const popup = document.querySelector('.popup_opened')
   if (evt.key === 'Escape') {
-    closePopup(popupTypeShowImage);
-    closePopup(popupTypeEdit);
-    closePopup(popupTypeAddCard);
+    closePopup(popup);
   }
 }
 
 function closePopup(popup) {
   popup.classList.remove('popup_opened')
   document.removeEventListener('keydown', handleEscUp)
+  errorReset()
+}
+
+function errorReset() {
+  const button = document.querySelector('.popup__button')
+  button.setAttribute('disabled', 'disabled')
+  button.classList.add('form__submit_inactive')
+  formAddCardSubmit.reset()
 }
 
 function closePopupOverlay(evt) {
+  const popup = document.querySelector('.popup_opened')
   if (evt.target.classList.contains('popup') || evt.target.classList.contains('popup__close')) {
-    closePopup(popupTypeShowImage);
-    closePopup(popupTypeEdit);
-    closePopup(popupTypeAddCard);
+    closePopup(popup);
   }
 }
 
-function renderItem() {
+function renderInitialCards() {
   initialCards.forEach(function (item) {
     const newCard = createCard (item);
       renderCards (newCard);
@@ -58,6 +64,7 @@ function createCard(item) {
 	const userElement = itemTemplate.cloneNode(true);
   userElement.querySelector('.card__image').style.backgroundImage = `url('${item.link}')`
 	userElement.querySelector('.card__title').textContent = item.name
+  // карточки сверстаны через background-image, у них нет атрибута alt
   setEventListeners(userElement);
   return userElement;
   
@@ -92,7 +99,7 @@ function handleShowImage (evt) {
   openPopup(popupTypeShowImage)
   buttonOpenPopupImage.style.backgroundImage = evt.target.style.backgroundImage
   popupImageTitle.textContent = evt.target.closest('.card__item').textContent
-  
+  // карточки сверстаны через background-image, у них нет атрибута alt
 }
 
 function setEventListeners(element) {
@@ -123,7 +130,7 @@ function handleProfileFormSubmit (evt) {
 	closePopup(popupTypeEdit);
 };
 
-renderItem()
+renderInitialCards()
 
 // отправка форм
 formAddCardSubmit.addEventListener('submit', handlerAddCard);
