@@ -20,6 +20,7 @@ const itemTemplate = document.querySelector('.card-template').content
 const inputFormLink = document.querySelector('.form__link');
 const inputFormTitle = document.querySelector('.form__place');
 const popupImageTitle = document.querySelector('.popup__image-title');
+const buttonAddcard = document.querySelector('.popup__button')
 
 function openPopup(popup) {
   popup.classList.add('popup_opened');
@@ -36,14 +37,6 @@ const handleEscUp = (evt) => {
 function closePopup(popup) {
   popup.classList.remove('popup_opened')
   document.removeEventListener('keydown', handleEscUp)
-  errorReset()
-}
-
-function errorReset() {
-  const button = document.querySelector('.popup__button')
-  button.setAttribute('disabled', 'disabled')
-  button.classList.add('form__submit_inactive')
-  formAddCardSubmit.reset()
 }
 
 function closePopupOverlay(evt) {
@@ -86,9 +79,10 @@ function handlerAddCard(evt) {
     link: formItemLink
 }
   cards.prepend(createCard(item));
-  formAddCardSubmit.reset()
+  buttonAddcard.setAttribute('disabled', 'disabled')
+  buttonAddcard.classList.add('form__submit_inactive')
   closePopup(popupTypeAddCard)
-}
+ }
 // удаление карточки
 
 function handleDelete(evt) {
@@ -119,6 +113,7 @@ function openProfileForm() {
   openPopup(popupTypeEdit)
 	nameInput.value = profileTitle.textContent
 	jobInput.value = profileSubTitle.textContent
+  formAddCardSubmit.reset()
 };
 
 // функция ввода данных в поля профиля
@@ -140,7 +135,7 @@ formElementTypeEdit.addEventListener('submit', handleProfileFormSubmit);
 buttonOpenPopupEdit.addEventListener('click', openProfileForm);
 
 // открытие/закрытие попапа с карточками
-buttonOpenPopupAddCard.addEventListener('click', () => {openPopup(popupTypeAddCard)});
+buttonOpenPopupAddCard.addEventListener('click', () => {openPopup(popupTypeAddCard), formAddCardSubmit.reset()});
 buttonOpenPopupImage.addEventListener('click', () => {openPopup(popupTypeShowImage)});
 popupTypeShowImage.addEventListener('mousedown', closePopupOverlay)
 popupTypeAddCard.addEventListener('mousedown', closePopupOverlay)
