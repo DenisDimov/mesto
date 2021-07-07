@@ -1,3 +1,9 @@
+export {openPopup, popupTypeShowImage, buttonOpenPopupImage, popupImageTitle}
+import Card from './Card.js'
+import {initialCards} from './initial-сards.js'
+import FormValidator from './FormValidator.js'
+export {config}
+
 const popupTypeEdit = document.querySelector('.popup_type_edit');
 const popupTypeAddCard = document.querySelector('.popup_type_new-card');
 const popupTypeShowImage = document.querySelector('.popup_type_image')
@@ -16,11 +22,22 @@ const profileTitle = document.querySelector('.profile__title');
 const profileSubTitle = document.querySelector('.profile__subtitle');
 const formAddCardSubmit = document.querySelector('#form__add-card');
 const cards = document.querySelector('.card');
-const itemTemplate = document.querySelector('.card-template').content
 const inputFormLink = document.querySelector('.form__link');
 const inputFormTitle = document.querySelector('.form__place');
 const popupImageTitle = document.querySelector('.popup__image-title');
 const buttonAddcard = document.querySelector('.popup__button')
+
+const config = {
+  formSelector: '.popup__form',
+  inputSelector: '.popup__input',
+  submitButtonSelector: '.form__btn',
+  inactiveButtonClass: 'form__submit_inactive',
+  inputErrorClass: 'popup__input_type_error',
+  errorClass: 'form__input-error_active'
+}
+
+const formValidator = new FormValidator(config, '.popup__form')
+formValidator.enableValidation()
 
 function openPopup(popup) {
   popup.classList.add('popup_opened');
@@ -48,24 +65,10 @@ function closePopupOverlay(evt) {
 
 function renderInitialCards() {
   initialCards.forEach(function (item) {
-    const newCard = createCard (item);
-      renderCards (newCard);
+    const card = new Card(item, '.card-template')
+    const cardElement = card.generateCard()
+    document.querySelector('.card').append(cardElement);
   });
-};
-
-function createCard(item) {
-	const userElement = itemTemplate.cloneNode(true);
-  userElement.querySelector('.card__image').style.backgroundImage = `url('${item.link}')`
-	userElement.querySelector('.card__title').textContent = item.name
-  // карточки сверстаны через background-image, у них нет атрибута alt
-  setEventListeners(userElement);
-  return userElement;
-  
-}
-
-// функция добавление карточки на страницу
-function renderCards (newCard) {
-  cards.prepend(newCard);
 };
 
 // добавление карточек на страницу
@@ -77,36 +80,14 @@ function handlerAddCard(evt) {
   const item = {
     name: formItemTitle,
     link: formItemLink
-}
-  cards.prepend(createCard(item));
+  }
+  const card = new Card(item, '.card-template')
+  const cardElement = card.generateCard()
+  document.querySelector('.card').prepend(cardElement);
   buttonAddcard.setAttribute('disabled', 'disabled')
   buttonAddcard.classList.add('form__submit_inactive')
   closePopup(popupTypeAddCard)
  }
-// удаление карточки
-
-function handleDelete(evt) {
-  evt.target.closest('.card__item').remove();
-}
-
-function handleShowImage (evt) {
-  openPopup(popupTypeShowImage)
-  buttonOpenPopupImage.style.backgroundImage = evt.target.style.backgroundImage
-  popupImageTitle.textContent = evt.target.closest('.card__item').textContent
-  // карточки сверстаны через background-image, у них нет атрибута alt
-}
-
-function setEventListeners(element) {
-  element.querySelector('.card__delete').addEventListener('click', handleDelete);
-  element.querySelector('.card__icon').addEventListener('click', handleLikes);
-  element.querySelector('.card__image').addEventListener('click', handleShowImage);
-}
-
-// лайк карточки
-
-function handleLikes(evt) {
-  evt.target.classList.toggle('card__icon_active')
-}
 
 // функции открытия попапа редактирования профиля
 function openProfileForm() {
@@ -124,6 +105,7 @@ function handleProfileFormSubmit (evt) {
 	profileSubTitle.textContent = jobInput.value;
 	closePopup(popupTypeEdit);
 };
+
 
 renderInitialCards()
 
