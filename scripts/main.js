@@ -39,6 +39,7 @@ const config = {
 const formValidator = new FormValidator(config, '.popup__form')
 formValidator.enableValidation()
 
+
 function openPopup(popup) {
   popup.classList.add('popup_opened');
   document.addEventListener('keydown', handleEscUp)
@@ -57,9 +58,8 @@ function closePopup(popup) {
 }
 
 function closePopupOverlay(evt) {
-  const popup = document.querySelector('.popup_opened')
-  if (evt.target.classList.contains('popup') || evt.target.classList.contains('popup__close')) {
-    closePopup(popup);
+  if (evt.target.classList.contains('popup')) {
+    closePopup(evt.target);
   }
 }
 
@@ -122,3 +122,6 @@ buttonOpenPopupImage.addEventListener('click', () => {openPopup(popupTypeShowIma
 popupTypeShowImage.addEventListener('mousedown', closePopupOverlay)
 popupTypeAddCard.addEventListener('mousedown', closePopupOverlay)
 popupTypeEdit.addEventListener('mousedown', closePopupOverlay)
+buttonClosePopupEdit.addEventListener('click', () => {closePopup(popupTypeEdit)})
+buttonClosePopupAddCard.addEventListener('click', () => {closePopup(popupTypeAddCard)})
+buttonClosePopupImage.addEventListener('click', () => {closePopup(popupTypeShowImage)})
