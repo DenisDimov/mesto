@@ -58,7 +58,7 @@ function closePopup(popup) {
 }
 
 function closePopupOverlay(evt) {
-  if (evt.target.classList.contains('popup')) {
+  if (evt.target.classList.contains('popup') || evt.target.classList.contains('popup__close')) {
     closePopup(evt.target);
   }
 }
