@@ -1,0 +1,38 @@
+{
+  "name": "mesto",
+  "version": "1.0.0",
+  "description": "* Интро\r * Используемые технологии\r * Ссылка на Github",
+  "main": "babel.config.js",
+  "scripts": {
+    "build": "rm -rf dist && webpack --mode production",
+    "dev": "webpack serve"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DenisDimov/mesto.git"
+  },
+  "author": "Denis Dimov",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/DenisDimov/mesto/issues"
+  },
+  "homepage": "https://github.com/DenisDimov/mesto#readme",
+  "devDependencies": {
+    "@babel/core": "^7.14.8",
+    "@babel/preset-env": "^7.14.8",
+    "autoprefixer": "^10.3.1",
+    "babel-loader": "^8.2.2",
+    "clean-webpack-plugin": "^4.0.0-alpha.0",
+    "css-loader": "^6.2.0",
+    "cssnano": "^5.0.7",
+    "html-webpack-plugin": "^5.3.2",
+    "mini-css-extract-plugin": "^2.1.0",
+    "postcss-loader": "^6.1.1",
+    "webpack": "^5.47.0",
+    "webpack-cli": "^4.7.2",
+    "webpack-dev-server": "^3.11.2"
+  },
+  "dependencies": {
+    "core-js": "^3.15.2"
+  }
+}

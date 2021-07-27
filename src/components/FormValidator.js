@@ -1,4 +1,4 @@
-import {config} from './main.js'
+import {config} from '../pages/index.js'
 
 
 export default 
@@ -10,6 +10,7 @@ class FormValidator {
     this._inactiveButtonClass = config.inactiveButtonClass
     this._inputErrorClass = config.inputErrorClass
     this._errorClass = config.errorClass
+    this._errorList = Array.from(document.querySelectorAll(config.errorList))
     this._formElement = formElement
   }
 
@@ -55,7 +56,7 @@ class FormValidator {
 
 
   _toggleButtonState () {
-    if (this._hasInvalidInput(this._inputList)) {
+    if (this._hasInvalidInput()) {
       this._buttonElement.classList.add(this._inactiveButtonClass);
       this._buttonElement.setAttribute('disabled','disabled');
     } else {
@@ -64,11 +65,24 @@ class FormValidator {
     }
   };
 
+  clearErrors(){
+    this._inputList.forEach((input) => {
+      if (input.classList.contains(this._inputErrorClass)) {
+        input.classList.remove(this._inputErrorClass)
+      }
+    });
+    this._errorList.forEach((item) => {
+      item.classList.remove(this._errorClass);
+      item.textContent = '';
+    });
+  }
+
   enableValidation () {
     this._formList = Array.from(document.querySelectorAll(this._formSelector))
     this._formList.forEach((formElement) => {
       formElement.addEventListener('submit', (evt) => {
         evt.preventDefault()
+
       })
       this._setEventListener(formElement)
     })
