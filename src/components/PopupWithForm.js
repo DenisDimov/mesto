@@ -30,15 +30,6 @@ export default class PopupWithForm extends Popup {
     // this._popupForm.reset()
   }
 
-  // renderLoading(isLoading) {
-  //   if (isLoading) {
-  //     this._popupForm.querySelector(".popup__button").textContent =
-  //       "Сохранение...";
-  //   } else {
-  //     this._popupForm.querySelector(".popup__button").textContent = "Сохранить";
-  //   }
-  // }
-
   renderLoading(isLoading, button) {
     if (isLoading) {
       button.textContent = 'Сохранение...'
