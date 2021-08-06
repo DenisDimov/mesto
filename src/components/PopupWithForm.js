@@ -7,7 +7,7 @@ export default class PopupWithForm extends Popup {
     this._popupForm = this._popup.querySelector('.popup__form')
   }
 
-  _getInputValues() {
+  getInputValues() {
     this._inputList = this._popup.querySelectorAll('.popup__input')
     this._formValues = {}
     this._inputList.forEach(input => {
@@ -19,7 +19,7 @@ export default class PopupWithForm extends Popup {
   setEventListeners() {
     this._popup.addEventListener('submit', (evt) => {
       evt.preventDefault()
-      this._handleFormSubmit(this._getInputValues())
+      this._handleFormSubmit(this.getInputValues())
       this.close()
     });
     super.setEventListeners()
@@ -27,8 +27,27 @@ export default class PopupWithForm extends Popup {
 
   close() {
     super.close()
-    this._popupForm.reset()
+    // this._popupForm.reset()
   }
 
+  // renderLoading(isLoading) {
+  //   if (isLoading) {
+  //     this._popupForm.querySelector(".popup__button").textContent =
+  //       "Сохранение...";
+  //   } else {
+  //     this._popupForm.querySelector(".popup__button").textContent = "Сохранить";
+  //   }
+  // }
+
+  renderLoading(isLoading, button) {
+    if (isLoading) {
+      button.textContent = 'Сохранение...'
+    }
+    else if (!isLoading && (button.id === 'profile-btn' || button.id === 'avatar-btn')) {
+      button.textContent = 'Сохранить'
+    }
+    else if (!isLoading && button.id === 'form-addBtn')
+    button.textContent = 'Создать'
+  }
 
 }

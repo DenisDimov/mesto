@@ -13,7 +13,11 @@ export default class Section {
     })
   }
 
-  addItem(element) {
-    this._containerSelector.prepend(element)
+  addItem(element, order = true) {
+    if (order) {
+      this._containerSelector.append(element)
+    } else {
+      this._containerSelector.prepend(element)
+    }
   }
 }
