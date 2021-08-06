@@ -1,4 +1,3 @@
-import { initialCards } from "../components/initial-сards.js"
 
 export default class Section {
   constructor(containerSelector, {items, renderer}) {
