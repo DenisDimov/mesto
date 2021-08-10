@@ -7,7 +7,6 @@ export default class Card {
   ) {
     this._item = item
     this._myId = myId
-
     this._link = item.link;
     this._name = item.name;
     this._like = item.likes;
@@ -36,11 +35,10 @@ export default class Card {
       ".card__image"
     ).style.backgroundImage = `url('${this._link}')`;
     this._element.querySelector(".card__title").textContent = this._name;
-    this._element.id = this._id;
+    // this._element.id = this._id;
     this._elementLike = this._element.querySelector(".card__icon");
-    
-    this._element.querySelector('.card__like').textContent = `${this._item.likes.length}`;
-
+    this._counterLike = this._element.querySelector(".card__like");
+    this._counterLike.textContent = this._like.length;
 
     if (this._item.likes.find((like) => like._id === this._myId)) {
       this._elementLike.classList.add('card__icon_active');
@@ -50,7 +48,6 @@ export default class Card {
       this._element.querySelector('.card__delete').classList.add('card__delete_active')
     } else {
       this._element.querySelector('.card__delete').classList.remove('card__delete_active')
-      // debugger
     };
     this._setEventListeners();
     return this._element;
@@ -64,13 +61,11 @@ export default class Card {
   }
 
   addLike() {
-    const likes = this._element.querySelector('.card__icon');
-    likes.classList.toggle('card__icon_active');
+    this._elementLike.classList.toggle('card__icon_active');
   }
 
   counterShowLikes(arr) {
-    const counterLike = this._element.querySelector(".card__like");
-    counterLike.textContent = arr.length;
+    this._counterLike.textContent = arr.length;
   }
 
 
