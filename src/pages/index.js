@@ -152,8 +152,8 @@ const popupCard = new PopupWithForm(".popup_type_new-card", {
   handleFormSubmit: ({ place, Link }) => {
   popupCard.renderLoading(true, newCardBtn)
     api.addCard({ place, Link })
-    .then(() => {
-      const addCard = createCard({ name: place, link: Link });
+    .then((data) => {
+      const addCard = createCard(data);
       sectionCard.addItem(addCard, false);
     })
     .catch((err) => {
