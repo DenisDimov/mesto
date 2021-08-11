@@ -7,4 +7,4 @@ const config = {
   errorClass: 'form__input-error_active',
   errorList: '.form__input-error'
 }
-export {esc, config} 
+export {esc, config}

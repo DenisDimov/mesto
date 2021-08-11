@@ -14,7 +14,6 @@ class PopupWithSubmit extends Popup {
   setEventListeners() {
     this._popupButtonDelete.addEventListener('click', () => {
       this._handleSubmit()
-      this.close()
     });
     super.setEventListeners();
   }

@@ -13,7 +13,7 @@ export default class Card {
     this._like = item.likes;
     this._id = item._id;
     this._owner = item.owner;
-    this._cardSelector = cardSelector;
+    this._cardSelector = cardSelector; 
     this._handleCardClick = handleCardClick;
     this._handleCardDelete = handleCardDelete;
     this._handleAddlike = handleAddlike;

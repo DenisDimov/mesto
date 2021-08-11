@@ -26,7 +26,7 @@ export default class Api {
         name: profileTitle,
         about: profileSubTitle,
       }),
-    });
+    }).then(this._handleResponse);;
   }
 
   addCard({place, Link}) {
@@ -61,14 +61,14 @@ export default class Api {
       body: JSON.stringify({
         avatar: avatar,
       }),
-    });
+    }).then(this._handleResponse);;
   }
 
   deleteCard(cardId) {
-    fetch(`${this._url}/cards/${cardId}`, {
+    return fetch(`${this._url}/cards/${cardId}`, {
       method: "DELETE",
       headers: this._headers,
-    });
+    }).then(this._handleResponse);;
   }
 
   _handleResponse(res) {

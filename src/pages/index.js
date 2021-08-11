@@ -1,6 +1,6 @@
 import "./index.css";
 
-import { config } from "../components/constants.js";
+import { config } from "../utils/constants.js";
 import Card from "../components/Card.js";
 import FormValidator from "../components/FormValidator.js";
 import PopupWithImage from "../components/PopupWithImage.js";
@@ -19,16 +19,8 @@ const nameInput = document.querySelector(".form__name");
 const jobInput = document.querySelector(".form__job");
 const profileTitle = document.querySelector(".profile__title");
 const profileSubTitle = document.querySelector(".profile__subtitle");
-const inputFormLink = document.querySelector(".form__link");
-const inputFormTitle = document.querySelector(".form__place");
-const buttonAddcard = document.querySelector(".popup__button");
 const avatarEdit = document.querySelector(".profile__avatar-edit");
 const avatarImage = document.querySelector(".profile__avatar");
-const avatarId = document.querySelector(".popup__avatar");
-const profileBtn = document.querySelector('#profile-btn')
-const avatarBtn = document.querySelector('#avatar-btn')
-const newCardBtn = document.querySelector('#form-addBtn')
-// const popupTypeDelete = document.querySelector('.popup_type_delete')
 
 let userDataInfo;
 let sectionCard;
@@ -41,13 +33,14 @@ const api = new Api({
   },
 });
 
+const userInfo = new UserInfo(profileTitle, profileSubTitle, avatarImage);
+
 // получение с сервера карточек и заполнение профиля
 Promise.all([api.getUserData(), api.getInitialCards()])
   .then(([userData, initialCards]) => {
     userDataInfo = userData;
-    const userInfo = new UserInfo(profileTitle, profileSubTitle);
     userInfo.setUserInfo(userData.name, userData.about);
-    avatarImage.src = userData.avatar;
+    userInfo.setAvatar(userData.avatar)
     sectionCard = new Section(".card", {
       items: initialCards,
       renderer: (cardItem) => {
@@ -72,17 +65,21 @@ formValidatorAvatar.enableValidation();
 
 const popupImage = new PopupWithImage(".popup_type_image");
 
-const userInfo = new UserInfo(profileTitle, profileSubTitle, avatarImage);
+
 
 const popupProfile = new PopupWithForm(".popup_type_edit", {
   handleFormSubmit: (data) => {
-    popupProfile.renderLoading(true, profileBtn)
+    popupProfile.renderLoading(true)
     api.setUserInfo(data.name, data.job)
     .then(() => {
-      userInfo.setUserInfo(data.name, data.job, data.avatar);
+      userInfo.setUserInfo(data.name, data.job);
+      popupProfile.close()
+    })
+    .catch((err) => {
+      console.log((err))
     })
     .finally(() => {
-      popupProfile.renderLoading(false, profileBtn)
+      popupProfile.renderLoading(false)
     });
   },
 });
@@ -92,17 +89,18 @@ const popupWithSubmit = new PopupWithSubmit(".popup_type_delete")
 
 const popupAvatar = new PopupWithForm(".popup_type_avatar", {
   handleFormSubmit: (data) => {
-popupAvatar.renderLoading(true, avatarBtn)
+popupAvatar.renderLoading(true)
     api.setNewAvatar(data.avatar)
     .then(() => {
       // debugger
       userInfo.setAvatar(data.avatar)
+      popupAvatar.close()
     })
     .catch((err) => {
       console.log((err))
     })
     .finally(() => {
-      popupAvatar.renderLoading(false, avatarBtn)
+      popupAvatar.renderLoading(false)
     })
   },
 });
@@ -112,15 +110,18 @@ function createCard(item) {
   const card = new Card(item, {myId: userDataInfo._id}, ".card-template", {
     handleCardClick: () => {
       popupImage.open(item);
-      inputFormLink.value = "";
-      inputFormTitle.value = "";
     },
-
     handleCardDelete: () => {
       popupWithSubmit.open()
       popupWithSubmit.setHandleSubmit(() => {
         api.deleteCard(item._id)
-        card.handleDelete()
+        .then(() => {
+          card.handleDelete()
+          popupWithSubmit.close()
+        })
+        .catch((err) => {
+          console.log(err)
+        })
       })
     },
     handleAddlike: () => {
@@ -144,28 +145,25 @@ function createCard(item) {
       })
     }
   });
-  return card.generateCard(item);
+  return card.generateCard();
 }
 
 // добавление карточек на сервер
 const popupCard = new PopupWithForm(".popup_type_new-card", {
   handleFormSubmit: ({ place, Link }) => {
-  popupCard.renderLoading(true, newCardBtn)
+  popupCard.renderLoading(true)
     api.addCard({ place, Link })
     .then((data) => {
       const addCard = createCard(data);
       sectionCard.addItem(addCard, false);
+      popupCard.close()
     })
     .catch((err) => {
       console.log((err))
     })
     .finally(() => {
-      popupCard.renderLoading(true, newCardBtn)
+      popupCard.renderLoading(false)
     })
-    inputFormLink.value = "";
-    inputFormTitle.value = "";
-    buttonAddcard.setAttribute("disabled", "disabled");
-    buttonAddcard.classList.add("form__submit_inactive");
   },
 });
 

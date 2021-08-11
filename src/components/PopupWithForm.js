@@ -5,6 +5,7 @@ export default class PopupWithForm extends Popup {
     super(popupSelector)
     this._handleFormSubmit = handleFormSubmit
     this._popupForm = this._popup.querySelector('.popup__form')
+    this._popupButton = this._popupForm.querySelector('.popup__button')
   }
 
   getInputValues() {
@@ -20,25 +21,22 @@ export default class PopupWithForm extends Popup {
     this._popup.addEventListener('submit', (evt) => {
       evt.preventDefault()
       this._handleFormSubmit(this.getInputValues())
-      this.close()
+      // this.close()
     });
     super.setEventListeners()
   }
 
   close() {
     super.close()
-    // this._popupForm.reset()
+    this._popupForm.reset()
   }
 
-  renderLoading(isLoading, button) {
+  renderLoading(isLoading) {
     if (isLoading) {
-      button.textContent = 'Сохранение...'
+      this._popupButton.textContent = 'Сохранение...'
     }
-    else if (!isLoading && (button.id === 'profile-btn' || button.id === 'avatar-btn')) {
-      button.textContent = 'Сохранить'
+    else {
+      this._popupButton.textContent = 'Сохранить'
     }
-    else if (!isLoading && button.id === 'form-addBtn')
-    button.textContent = 'Создать'
   }
-
 }
